@@ -1,4 +1,6 @@
-const request = require('request');
+const projects = require('../../projects.json'),
+    path = 'auth/1/session',
+    request = require('request');
 
 module.exports = () => {
     const authController = {};
@@ -9,18 +11,18 @@ module.exports = () => {
         try {
 
             const authInfo = await new Promise((resolve, reject) => {
-                request.post('http://jira.kbase.inf.br/rest/auth/1/session',
+                request.post(projects.url + path,
                 {
-                json:{
-                    username: req.body.username,
-                    password: req.body.password
-                }
-            }, (error, response) => {
-                if (error)
-                    return reject(error);
+                    json:{
+                        username: req.body.username,
+                        password: req.body.password
+                    }
+                }, (error, response) => {
+                    if (error)
+                        return reject(error);
 
-                return resolve(response.body);
-                })
+                    return resolve(response.body);
+                    })
             })
             
             res.status(200).json(authInfo);

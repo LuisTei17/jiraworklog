@@ -1,2 +1,5 @@
-const projects = require('../../projects.json'),
-    credentials = require('../../credentials.json'),
+module.exports = (app) => {
+    const issuesController = app.controllers.issuesController;
+
+    app.get('/v1/all-issues', issuesController.getAllIssues);
+}
