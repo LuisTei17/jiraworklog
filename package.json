@@ -1,0 +1,25 @@
+{
+  "name": "jiraworklog",
+  "version": "1.0.0",
+  "description": "App that integrates jira api and logs work hours",
+  "main": "index.js",
+  "dependencies": {
+    "glob": "^7.1.4",
+    "hapi": "^18.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuisTei17/jiraworklog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LuisTei17/jiraworklog/issues"
+  },
+  "homepage": "https://github.com/LuisTei17/jiraworklog#readme"
+}
