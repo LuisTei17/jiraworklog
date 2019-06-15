@@ -16,6 +16,23 @@ exports.jiraAuthentication = ({username, password}) => {
                 return reject(error);
 
                 resolve({'header': response.headers, 'body': response.body});
-        })
-    })
-}
+        });
+    });
+};
+
+exports.getProjects = ({cookie}) => {
+    return new Promise((resolve, reject) => {
+        request.get(url + '/rest/api/2/project',
+        {
+            headers:{
+                cookie: cookie
+            }
+        },
+        (error, response) => {
+            if (error)
+                return reject(error);
+
+                resolve(response.body);
+        });
+    });
+};
