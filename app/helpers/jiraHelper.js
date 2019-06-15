@@ -1,6 +1,5 @@
 const request = require('request'),
-url = require('../../conf/env/jira.json').url,
-path = `api/2/search?jql=((project=20500 OR project =20800) AND (status = 'To desenv' OR status = 'In progress'))`;
+    url = require('../../conf/env/jira.json').url;
 
 exports.jiraAuthentication = ({username, password}) => {
     return new Promise((resolve, reject) => {
@@ -15,7 +14,7 @@ exports.jiraAuthentication = ({username, password}) => {
             if (error)
                 return reject(error);
 
-                resolve({'header': response.headers, 'body': response.body});
+                resolve({'authInfo': response.body.session});
         });
     });
 };
@@ -23,6 +22,28 @@ exports.jiraAuthentication = ({username, password}) => {
 exports.getProjects = ({cookie}) => {
     return new Promise((resolve, reject) => {
         request.get(url + '/rest/api/2/project',
+        {
+            headers:{
+                cookie: cookie
+            }
+        },
+        (error, response) => {
+            if (error)
+                return reject(error);
+
+                resolve(response.body);
+        });
+    });
+};
+
+exports.getIssuesByProject = (cookie, project_id) => {
+    path = `/rest/api/2/search?jql=(
+            (project=${project_id})
+            AND (status = 'To desenv' OR status = 'In progress')
+        )`;
+
+    return new Promise((resolve, reject) => {
+        request.get(url + path,
         {
             headers:{
                 cookie: cookie
