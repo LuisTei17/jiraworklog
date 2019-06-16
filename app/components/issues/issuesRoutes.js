@@ -30,5 +30,27 @@ module.exports = [
                 }
             }
         }
+    },
+    {
+        'path':'/worklog/issues/{id_issue}',
+        'method': 'POST',
+        'handler': handler.logHourInIssue,
+        'config': {
+            'description': 'Download a file',
+            'validate': {
+                'params': {
+                    'id_issue': joi.number().integer().required()
+                },
+                'query': {
+                    'cookie': joi.string().required()
+                },
+                'payload': {
+                    'comment': joi.string().required(),
+                    'type': joi.string().valid('[DESENV]', '[REUNIAO]', '[TESTE]').required(),
+                    'started': joi.date().required(),
+                    'timeSpentSeconds': joi.number().integer().required()
+                }
+            }
+        }
     }
 ]
