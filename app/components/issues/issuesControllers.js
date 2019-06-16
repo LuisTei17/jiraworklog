@@ -22,3 +22,13 @@ exports.getIssuesByProject = async (req, h) => {
         console.log(error);
     }
 };
+
+exports.logHourInIssue = async (req, h) => {
+    try {
+        const logHourInIssue = await jiraHelper.logHourInIssue(req.query.cookie, req.params.id_issue, req.payload);
+
+        return h.response(logHourInIssue);      
+    } catch (error) {
+        console.log(error);
+    }
+};
