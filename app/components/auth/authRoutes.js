@@ -15,5 +15,18 @@ module.exports = [
                 }
             }
         }
+    },
+    {
+        'path':'/auth/',
+        'method': 'GET',
+        'handler': handler.checkAuth,
+        'config': {
+            'description': 'Check auth',
+            'validate': {
+                'headers': {
+                    'cookie': joi.string().required()
+                }
+            }
+        }
     }
 ];

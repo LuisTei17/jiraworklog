@@ -12,13 +12,30 @@ exports.jiraAuthentication = ({username, password}) => {
             }
         },
         (error, response) => {
-            if (error)
+            if (error || (response.body && response.body.errorMessage))
                 return reject(error);
 
                 resolve({'authInfo': response.body.session});
         });
     });
 };
+
+exports.checkIfUserAuth = (cookie) => {
+    return new Promise((resolve, reject) => {
+        request.get(url + '/rest/auth/1/session',
+        {
+            headers:{
+                cookie: cookie
+            }
+        },
+        (error, response) => {
+            if (error || (response.body && response.body.errorMessage))
+                return reject(error);
+
+                resolve(response.body);
+        });
+    });
+}
 
 exports.getProjects = ({cookie}) => {
     return new Promise((resolve, reject) => {
@@ -29,7 +46,7 @@ exports.getProjects = ({cookie}) => {
             }
         },
         (error, response) => {
-            if (error)
+            if (error || (response.body && response.body.errorMessage))
                 return reject(error);
 
                 resolve(response.body);
@@ -51,7 +68,7 @@ exports.getIssuesByProject = (cookie, project_id) => {
             }
         },
         (error, response) => {
-            if (error)
+            if (error || (response.body && response.body.errorMessage))
                 return reject(error);
 
                 resolve(response.body);
@@ -77,7 +94,7 @@ exports.logHourInIssue = (cookie, id_issue, {comment, type, started, timeSpentSe
         request.post(url + path,
             options,
             (error, response) => {
-                if (error)
+                if (error || (response.body && response.body.errorMessage))
                     return reject(error);
 
                     resolve(response.body);
