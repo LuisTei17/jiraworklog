@@ -52,7 +52,7 @@ module.exports = [
                     'cookie': joi.string().required()
                 },
                 'payload': {
-                    'comment': joi.string().required(),
+                    'comment': joi.string().allow('').required(),
                     'type': joi.string().valid('[DESENV]', '[REUNIAO]', '[TESTE]').required(),
                     'started': joi.date().required(),
                     'timeSpentSeconds': joi.number().integer().required()

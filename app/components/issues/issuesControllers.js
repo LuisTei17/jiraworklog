@@ -3,7 +3,7 @@ const jiraHelper = require('../../helpers/jiraHelper'),
 
 exports.getProjects = async (req, h) => {
     try {
-        const projects = await jiraHelper.getProjects(req.query),
+        const projects = await jiraHelper.getProjects(req.query.cookie),
             validProjects = projectsFactory.getValidProjects(projects);
 
         return h.response(validProjects);      

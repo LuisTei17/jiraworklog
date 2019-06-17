@@ -37,7 +37,7 @@ exports.checkIfUserAuth = (cookie) => {
     });
 }
 
-exports.getProjects = ({cookie}) => {
+exports.getProjects = (cookie) => {
     return new Promise((resolve, reject) => {
         request.get(url + '/rest/api/2/project',
         {
