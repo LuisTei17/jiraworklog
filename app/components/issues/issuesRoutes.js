@@ -54,7 +54,7 @@ module.exports = [
                 'payload': {
                     'comment': joi.string().allow('').required(),
                     'type': joi.string().valid('[DESENV]', '[REUNIAO]', '[TESTE]').required(),
-                    'started': joi.date().required(),
+                    'started': joi.string().required(),
                     'timeSpentSeconds': joi.number().integer().required()
                 }
             },
