@@ -3,12 +3,12 @@ const jiraHelper = require('../../helpers/jiraHelper'),
 
 exports.getProjects = async (req, h) => {
     try {
-        const projects = await jiraHelper.getProjects(req.query),
+        const projects = await jiraHelper.getProjects(req.query.cookie),
             validProjects = projectsFactory.getValidProjects(projects);
 
         return h.response(validProjects);      
     } catch (error) {
-        console.log(error);
+        throw error;
     }
 };
 
@@ -19,7 +19,7 @@ exports.getIssuesByProject = async (req, h) => {
 
         return h.response(formatedIssues);      
     } catch (error) {
-        console.log(error);
+        throw error;
     }
 };
 
@@ -29,6 +29,6 @@ exports.logHourInIssue = async (req, h) => {
 
         return h.response(logHourInIssue);      
     } catch (error) {
-        console.log(error);
+        throw error;
     }
 };

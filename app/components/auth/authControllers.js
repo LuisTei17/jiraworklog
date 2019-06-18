@@ -8,6 +8,17 @@ exports.makeAuth = async (req, h) => {
         return h.response({'cookie': cookie});      ;
         
     } catch (error) {
-        console.log(error);
+        throw error;
+    }
+};
+
+exports.checkAuth = async (req, h) => {
+    try {
+        const authInfo = await jiraHelper.checkIfUserAuth(req.headers.cookie);
+
+        return h.response({'auth': authInfo});
+        
+    } catch (error) {
+        throw error;
     }
 };

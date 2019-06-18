@@ -1,5 +1,6 @@
 const handler = require('./issuesControllers'),
-    joi = require('joi');
+    joi = require('joi'),
+    checkIfUserAuth = require('../../policies/checkAuth');
 
 module.exports = [
     {
@@ -12,6 +13,9 @@ module.exports = [
                 'query': {
                     'cookie': joi.string().required()
                 }
+            },
+            'plugins': {
+                'policies': [checkIfUserAuth]
             }
         }
     },
@@ -28,6 +32,9 @@ module.exports = [
                 'query': {
                     'cookie': joi.string().required()
                 }
+            },
+            'plugins': {
+                'policies': [checkIfUserAuth]
             }
         }
     },
@@ -45,11 +52,14 @@ module.exports = [
                     'cookie': joi.string().required()
                 },
                 'payload': {
-                    'comment': joi.string().required(),
+                    'comment': joi.string().allow('').required(),
                     'type': joi.string().valid('[DESENV]', '[REUNIAO]', '[TESTE]').required(),
-                    'started': joi.date().required(),
+                    'started': joi.string().required(),
                     'timeSpentSeconds': joi.number().integer().required()
                 }
+            },
+            'plugins': {
+                'policies': [checkIfUserAuth]
             }
         }
     }
