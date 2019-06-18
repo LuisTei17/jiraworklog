@@ -17,13 +17,13 @@ module.exports = [
         }
     },
     {
-        'path':'/auth/',
+        'path':'/auth',
         'method': 'GET',
         'handler': handler.checkAuth,
         'config': {
             'description': 'Check auth',
             'validate': {
-                'headers': {
+                'query': {
                     'cookie': joi.string().required()
                 }
             }

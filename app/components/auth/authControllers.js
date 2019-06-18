@@ -14,7 +14,7 @@ exports.makeAuth = async (req, h) => {
 
 exports.checkAuth = async (req, h) => {
     try {
-        const authInfo = await jiraHelper.checkIfUserAuth(req.headers.cookie);
+        const authInfo = await jiraHelper.checkIfUserAuth(req.query.cookie);
 
         return h.response({'auth': authInfo});
         

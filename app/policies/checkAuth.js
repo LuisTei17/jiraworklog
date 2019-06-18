@@ -1,10 +1,10 @@
 const jiraHelper = require('../helpers/jiraHelper');
 
-module.exports = async (request, h) => {
+exports.checkAuth = async (request, h) => {
     try {
-        await jiraHelper.checkIfUserAuth(request.header.cookie);
+        await jiraHelper.checkIfUserAuth(request.query.cookie);
 
-        h.continue();
+        h.continue;
     } catch (error) {
         throw error;
     }

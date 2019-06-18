@@ -1,6 +1,5 @@
 const handler = require('./issuesControllers'),
-    joi = require('joi'),
-    checkIfUserAuth = require('../../policies/checkAuth');
+    joi = require('joi');
 
 module.exports = [
     {
@@ -15,7 +14,7 @@ module.exports = [
                 }
             },
             'plugins': {
-                'policies': [checkIfUserAuth]
+                'policies': ['checkAuth']
             }
         }
     },
@@ -34,7 +33,7 @@ module.exports = [
                 }
             },
             'plugins': {
-                'policies': [checkIfUserAuth]
+                'policies': ['checkAuth']
             }
         }
     },
@@ -59,7 +58,7 @@ module.exports = [
                 }
             },
             'plugins': {
-                'policies': [checkIfUserAuth]
+                'policies': ['checkAuth']
             }
         }
     }
