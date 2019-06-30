@@ -12,7 +12,7 @@ exports.jiraAuthentication = ({username, password}) => {
             }
         },
         (error, response) => {
-            if (error || (response.body && response.body.errorMessage))
+            if (error || (response.body && response.body.errorMessages))
                 return reject(error);
 
                 resolve({'authInfo': response.body.session});
@@ -29,7 +29,7 @@ exports.checkIfUserAuth = (cookie) => {
             }
         },
         (error, response) => {
-            if (error || (response.body && response.body.errorMessage))
+            if (error || (response.body && response.body.errorMessages))
                 return reject(error);
 
                 resolve(response.body);
@@ -46,7 +46,7 @@ exports.getProjects = (cookie) => {
             }
         },
         (error, response) => {
-            if (error || (response.body && response.body.errorMessage))
+            if (error || (response.body && response.body.errorMessages))
                 return reject(error);
 
                 resolve(response.body);
@@ -68,7 +68,7 @@ exports.getIssuesByProject = (cookie, project_id) => {
             }
         },
         (error, response) => {
-            if (error || (response.body && response.body.errorMessage))
+            if (error || (response.body && response.body.errorMessages))
                 return reject(error);
 
                 resolve(response.body);
@@ -80,7 +80,7 @@ exports.logHourInIssue = (cookie, id_issue, {comment, type, started, timeSpentSe
     const path = `/rest/api/2/issue/${id_issue}/worklog`,
         requestBody = {
             "comment": `${type} ${comment}`,
-            "started": moment(started).format('YYYY-MM-DDTHH:MM:SS.0ssZZ'),
+            "started": moment(started).format('YYYY-MM-DDThh:mm:ss.0ssZZ'),
             "timeSpentSeconds": timeSpentSeconds
         },
         options = {
@@ -94,7 +94,7 @@ exports.logHourInIssue = (cookie, id_issue, {comment, type, started, timeSpentSe
         request.post(url + path,
             options,
             (error, response) => {
-                if (error || (response.body && response.body.errorMessage))
+                if (error || (response.body && response.body.errorMessages))
                     return reject(error);
 
                     resolve(response.body);
