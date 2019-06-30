@@ -5,7 +5,6 @@ const hapi = require('hapi'),
 const init = async () => {
     const server = hapi.server({
         port: process.env.PORT || 5000,
-        host: 'localhost',
         routes: {
             cors: true
         }
