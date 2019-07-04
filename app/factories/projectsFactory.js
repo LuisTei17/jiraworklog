@@ -16,7 +16,6 @@ exports.getValidProjects = (projects) => {
 exports.issueFormater = (projectIssuesStr) => {
     const projectIssues = JSON.parse(projectIssuesStr),
         issues = projectIssues.issues;
-    
     return issues.map(issue => {
         return {
             'issue_id': issue.id,
